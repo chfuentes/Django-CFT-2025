@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block title %}{{ detalle_diariomural.titulo }}{% endblock %}
+
+{% block content %}
+<div class="detalle-wrapper">
+    <article class="detalle-article">
+        <!-- Header con imagen hero -->
+        <div class="detalle-hero">
+            {% if detalle_diariomural.imagen %}
+                <img src="{{ detalle_diariomural.imagen.url }}" alt="{{ detalle_diariomural.titulo }}" class="detalle-hero-image">
+                <div class="detalle-hero-overlay"></div>
+            {% else %}
+                <div class="detalle-hero-placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+                    </svg>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Contenido del artículo -->
+        <div class="detalle-content">
+            <!-- Título -->
+            <h1 class="detalle-title">{{ detalle_diariomural.titulo }}</h1>
+            
+            <!-- Metadata -->
+            <div class="detalle-meta">
+                <!-- Fecha -->
+                <span class="detalle-meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                    </svg>
+                    Publicado el {{ detalle_diariomural.fecha_publicacion|date:"d \d\e F \d\e Y, H:i" }}
+                </span>
+                
+                <!-- Estado/Tipo -->
+                {% if detalle_diariomural.tipo %}
+                <span class="detalle-meta-item detalle-category">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                    </svg>
+                    {{ detalle_diariomural.tipo.nombre_estado }}
+                </span>
+                {% endif %}
+            </div>
+
+            <!-- Separador -->
+            <hr class="detalle-divider">
+
+            <!-- Contenido del artículo -->
+            <div class="detalle-body">
+                {{ detalle_diariomural.contenido|linebreaks }}
+            </div>
+
+            <!-- Botón volver -->
+            <div class="detalle-actions">
+                <a href="{% url 'diariomural:lista_diariomural' %}" class="btn-back">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                    Volver al listado
+                </a>
+            </div>
+        </div>
+    </article>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+/* ============================================
+   VARIABLES CSS
+   ============================================ */
+:root {
+    /* Colores principales */
+    --primary: #667eea;
+    --primary-dark: #5568d3;
+    --secondary: #764ba2;
+    --danger: #ff6b6b;
+    --danger-hover: #ff4757;
+    --danger-dark: #721c24;
+    --success: #198754;
+    --error: #dc3545;
+    --error-bg: #f8d7da;
+    --error-border: #f5c6cb;
+    
+    /* Colores de texto */
+    --text-dark: #333;
+    --text-light: #666;
+    --text-white: #ffffff;
+    
+    /* Fondos */
+    --bg-white-95: rgba(255, 255, 255, 0.95);
+    --bg-white-90: rgba(255, 255, 255, 0.9);
+    --bg-glass-light: rgba(255, 255, 255, 0.08);
+    --bg-glass-dark: rgba(0, 0, 0, 0.5);
+    --bg-glass-darker: rgba(0, 0, 0, 0.8);
+    
+    /* Sombras */
+    --shadow-sm: 0 4px 30px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-primary: 0 10px 30px rgba(102, 126, 234, 0.4);
+    --shadow-primary-lg: 0 15px 40px rgba(102, 126, 234, 0.5);
+    
+    /* Border radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 10px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    
+    /* Transiciones */
+    --transition: all 0.3s ease;
+    
+    /* Blur */
+    --blur-sm: blur(10px);
+    --blur-md: blur(20px);
+    
+    /* Tamaños de fuente */
+    --font-sm: 0.875rem;
+    --font-md: 0.95rem;
+    --font-lg: 1.1rem;
+    --font-xl: 1.5rem;
+    --font-2xl: 1.75rem;
+}

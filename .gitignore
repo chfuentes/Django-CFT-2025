@@ -1,0 +1,76 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Virtual environments
+env/
+venv/
+.venv/
+ENV/
+
+# Django stuff:
+# SQLite DB file (if you use sqlite for development)
+db.sqlite3
+
+# Media files (user-uploaded) - don't commit uploaded files
+/media/
+media/
+
+# Collected static files
+staticfiles/
+static_root/
+
+# Logs
+*.log
+logs/
+
+# Local env vars
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+
+# Unit test / profiling
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# IDEs and editors
+*.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Others
+pip-log.txt
+celerybeat-schedule
+
+# Ignore node_modules if present for frontend tooling
+node_modules/
+
+# Optional: ignore build artifacts from Python packages
+*.egg

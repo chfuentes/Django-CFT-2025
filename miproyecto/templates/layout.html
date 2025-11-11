@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% include 'partials/head.html' %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    
+    <!-- Canvas para las partículas -->
+    <div id="particles-js"></div>
+     <!-- Incluir navbar desde partial -->
+    {% include 'partials/navbar.html' %}
+
+    <main class="mt-4">
+        <div class="container-fluid py-4">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <!-- Footer  -->
+    {% include 'partials/footer.html' %}
+    {% include 'partials/scripts.html' %}
+
+    <!-- Mensajes de Django (GLOBAL) -->
+    {% if messages %}
+        <div id="django-messages" data-messages='[
+            {% for mensaje in messages %}
+                "{{ mensaje|escapejs }}"{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]'></div>
+    {% endif %}
+    
+</body>
+</html>

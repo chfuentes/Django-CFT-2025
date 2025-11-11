@@ -1,0 +1,20 @@
+/* ============================================
+   BASE - PARTICLES Y FONDO
+   ============================================ */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+body {
+    background: linear-gradient(135deg, var(--primary) 0%, #230342 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+    color: var(--text-white);
+    position: relative;
+}

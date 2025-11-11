@@ -1,0 +1,32 @@
+/* ============================================
+   DROPDOWN
+   ============================================ */
+.dropdown-menu {
+    background: var(--bg-glass-darker) !important;
+    backdrop-filter: var(--blur-sm);
+    -webkit-backdrop-filter: var(--blur-sm);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-xl);
+    animation: fadeInDown 0.3s ease;
+}
+
+.dropdown-item {
+    color: var(--text-white) !important;
+    transition: var(--transition);
+}
+
+.dropdown-item:hover {
+    background-color: rgba(102, 126, 234, 0.3) !important;
+    color: var(--text-white) !important;
+    transform: translateX(5px);
+}
+
+.dropdown-item.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+    color: var(--text-white) !important;
+}
+
+.nav-item.dropdown .nav-link.active {
+    background-color: rgba(102, 126, 234, 0.2);
+    border-radius: var(--radius-sm);
+}

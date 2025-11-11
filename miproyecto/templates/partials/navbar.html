@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'inicio' %}">SuperProyecto</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <!-- Inicio -->
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'inicio' %}active{% endif %}" 
+                       href="{% url 'inicio' %}">
+                        Inicio
+                    </a>
+                </li>
+                
+                <!-- Acerca De -->
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'acerca_de' %}active{% endif %}" 
+                       href="{% url 'acerca_de' %}">
+                        Acerca De
+                    </a>
+                </li>
+                
+                <!-- DROPDOWN: Diario Mural -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if request.resolver_match.namespace == 'diariomural' %}active{% endif %}" 
+                       href="#" 
+                       id="navbarDropdownDiario" 
+                       role="button" 
+                       data-bs-toggle="dropdown" 
+                       aria-expanded="false">
+                        Diario Mural
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownDiario">
+                        <li>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'lista_diariomural' %}active{% endif %}" 
+                               href="{% url 'diariomural:lista_diariomural' %}">
+                                📰 Ver Publicaciones
+                            </a>
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'crear_diariomural' %}active{% endif %}" 
+                               href="{% url 'diariomural:crear_diariomural' %}">
+                                ✍️ Nueva Publicación
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                
+                <!-- Registro de Usuarios (solo autenticados) -->
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'registro' %}active{% endif %}" 
+                       href="{% url 'usuarios:registro' %}">
+                        Registro de Usuarios
+                    </a>
+                </li>
+                {% endif %}
+                
+                <!-- Consola Administración -->
+                <li class="nav-item">
+                    <a class="nav-link {% if '/admin' in request.path %}active{% endif %}" 
+                       href="/admin">
+                        Consola Administracion
+                    </a>
+                </li>
+                
+                <!-- Cerrar Sesión / Iniciar Sesión -->
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <form action="{% url 'usuarios:logout' %}" method='POST' style="margin: 0;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-link border-0 bg-transparent text-danger" style="cursor: pointer;">
+                            🚪 Cerrar Sesión
+                        </button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}" 
+                       href="{% url 'usuarios:login' %}">
+                        🔐 Iniciar Sesión
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

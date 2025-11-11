@@ -1,0 +1,92 @@
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+    background: var(--bg-glass-light) !important;
+    backdrop-filter: var(--blur-md);
+    -webkit-backdrop-filter: var(--blur-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+    font-size: var(--font-xl);
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff, #a8c0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: var(--transition);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar .nav-link {
+    position: relative;
+    transition: var(--transition);
+}
+
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transition: var(--transition);
+    transform: translateX(-50%);
+}
+
+.navbar .nav-link:hover {
+    color: var(--text-white) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+    width: 80%;
+}
+
+.navbar .nav-link.active {
+    color: var(--text-white) !important;
+    font-weight: 500;
+}
+
+/* Botón Cerrar Sesión */
+.navbar .nav-link.text-danger {
+    color: var(--danger) !important;
+    border-radius: var(--radius-sm);
+}
+
+.navbar .nav-link.text-danger:hover {
+    color: var(--text-white) !important;
+    background-color: rgba(255, 107, 107, 0.15);
+    transform: translateY(-2px);
+}
+
+.navbar .nav-link.text-danger:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: var(--bg-glass-dark);
+        backdrop-filter: var(--blur-md);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        margin-top: 1rem;
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .navbar-nav {
+        text-align: center;
+    }
+    
+    .navbar .nav-item {
+        margin: 0.5rem 0;
+    }
+}
