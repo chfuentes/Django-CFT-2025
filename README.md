@@ -75,7 +75,7 @@ pip install -r .\requirements.txt
 python .\miproyecto\manage.py migrate
 ```
 
-4. Crear un superusuario (opcional, para acceder al admin):
+4. Crear un superusuario:
 
 ```powershell
 python .\miproyecto\manage.py createsuperuser
@@ -92,23 +92,12 @@ python .\miproyecto\manage.py runserver
 Desarrollo y comandos útiles
 ---------------------------
 
-- Ejecutar pruebas (si hay tests):
-
-```powershell
-python .\miproyecto\manage.py test
-```
-
 - Crear migraciones para una app determinada:
 
 ```powershell
 python .\miproyecto\manage.py makemigrations nombre_app
 ```
 
-- Recopilar archivos estáticos (útil para despliegue):
-
-```powershell
-python .\miproyecto\manage.py collectstatic
-```
 
 Archivos y configuraciones clave
 -------------------------------
@@ -126,42 +115,3 @@ Archivos y configuraciones clave
 - `usuarios/templates/usuarios/login.html` — plantilla de login (usa Bootstrap y crispy-forms). Se colocó la tarjeta centrada para ocupar ~40% usando grid (`col-md-5`).
 
 - `media/` — carpeta con uploads; ya incluida en `.gitignore` y no se debe subir al repositorio.
-
-Consideraciones de seguridad
-----------------------------
-
-- Nunca subir el `.env` ni archivos con claves. Usar variables de entorno para `SECRET_KEY`, credenciales de DB y configuración sensible.
-- En producción, establecer `DEBUG = False` y configurar `ALLOWED_HOSTS` apropiadamente.
-
-Despliegue (resumen)
---------------------
-
-1. Preparar settings para producción (usar `django-environ` o variables de entorno).
-2. Configurar una base de datos de producción (PostgreSQL, MySQL, etc.).
-3. Usar un servidor WSGI/ASGI (Gunicorn / Daphne / uWSGI) detrás de Nginx o IIS.
-4. Configurar almacenamiento de archivos (S3 u otro) para media en producción.
-5. Ejecutar `collectstatic` y configurar Nginx para servir `STATIC_ROOT` y `MEDIA_ROOT`.
-
-Contribución
-------------
-
-- Mantener las migraciones versionadas (no ignorar `migrations/`).
-- Ramas: usar ramas descriptivas y pull requests para cambios grandes.
-- Añadir tests para nuevas funcionalidades.
-
-Licencia
---------
-
-Incluye aquí la licencia del proyecto (por ejemplo MIT) o un fichero `LICENSE` si corresponde.
-
-Notas finales y próximas mejoras sugeridas
-----------------------------------------
-
-- Añadir instrucciones para ejecutar linters (flake8/black) y pre-commit hooks.
-- Añadir un `Procfile` o ejemplos de configuración para despliegue en Heroku/Render/Vercel si fuera necesario.
-- Incluir `docker-compose.yml` si se desea contenerizar la aplicación para desarrollo y despliegue.
-
-Contacto
---------
-
-Indica aquí el autor o responsable del proyecto y el canal de comunicación (email/issue tracker).

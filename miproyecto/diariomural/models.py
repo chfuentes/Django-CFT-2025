@@ -1,9 +1,15 @@
+"""Modelos para la app `diariomural`.
+
+Contiene la definición de `DiarioMural` y `EstadoDiarioMural`.
+`DiarioMural` incluye manejo automático de `slug` y un campo de imagen
+resized mediante `django_resized`.
+"""
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.crypto import get_random_string
 from django_resized import ResizedImageField
 
-# Create your models here.
+
 class DiarioMural(models.Model):
     titulo = models.CharField(max_length=50)
     contenido = models.TextField()
