@@ -39,6 +39,14 @@
                                 📰 Ver Publicaciones
                             </a>
                         </li>
+
+                        <li>
+                            <a class="dropdown-item {% if request.resolver_match.url_name == 'lista_custom_diariomural' %}active{% endif %}" 
+                               href="{% url 'diariomural:lista_custom_diariomural' %}">
+                                📰 Ver Publicaciones Listado Custom
+                            </a>
+                        </li>
+
                         {% if request.user.is_authenticated %}
                         <li>
                             <a class="dropdown-item {% if request.resolver_match.url_name == 'crear_diariomural' %}active{% endif %}" 
@@ -61,12 +69,12 @@
                 {% endif %}
                 
                 <!-- Consola Administración -->
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                     <a class="nav-link {% if '/admin' in request.path %}active{% endif %}" 
                        href="/admin">
                         Consola Administracion
                     </a>
-                </li>
+                </li> {% endcomment %}
                 
                 <!-- Cerrar Sesión / Iniciar Sesión -->
                 {% if request.user.is_authenticated %}

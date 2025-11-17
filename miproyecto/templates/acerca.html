@@ -1,10 +1,358 @@
 {% extends "layout.html" %}
-{% block title %}
-    Acerca de
-{% endblock %}
+{% load static %}
+
+{% block title %}Acerca de - DigiMural{% endblock %}
 
 {% block content %}
-    <h1>Acerca de</h1>
+<style>
+.about-header {
+    text-align: center;
+    padding: 4rem 2rem 3rem;
+    margin-bottom: 4rem;
+}
+
+.about-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+}
+
+.about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.about-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    text-align: center;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+}
+
+.about-card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #667eea;
+}
+
+.about-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.about-card-text {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.about-section-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+}
+
+.about-section-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+.about-section-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.about-section-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.value-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.value-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.75rem;
+}
+
+.value-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+}
+
+.stats-section {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    margin: 4rem 0;
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+.about-cta {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 4rem 3rem;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin: 4rem 0;
+}
+
+.about-cta-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.about-cta-text {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.about-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.about-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+    color: white;
+}
+</style>
+
+<div class="about-header">
+    <div class="about-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </svg>
+    </div>
+    <h1 class="about-title">Sobre DigiMural</h1>
+    <p class="about-subtitle">Transformando la comunicación digital desde 2020</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="about-card">
+                <div class="about-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                        <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319z"/>
+                    </svg>
+                </div>
+                <h2 class="about-card-title">Nuestra Misión</h2>
+                <p class="about-card-text">
+                    Facilitar la comunicación efectiva entre organizaciones y sus comunidades mediante 
+                    una plataforma digital intuitiva que permite crear, compartir y gestionar publicaciones 
+                    de manera eficiente y atractiva.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="about-card">
+                <div class="about-card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+                        <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                    </svg>
+                </div>
+                <h2 class="about-card-title">Nuestra Visión</h2>
+                <p class="about-card-text">
+                    Ser la plataforma líder en soluciones de comunicación digital, reconocida por nuestra 
+                    innovación, facilidad de uso y compromiso con la transparencia en la gestión de 
+                    información comunitaria.
+                </p>
+            </div>
+        </div>
+    </div>
+
     <br>
-    <p>Esta es la pagina de acerca de....</p>
+    <div class="about-section-content">
+        <h2>Nuestra Historia</h2>
+        <p>
+            DigiMural nace en 2020 con la visión de modernizar la forma en que las organizaciones 
+            se comunican con su comunidad. Lo que comenzó como un proyecto universitario, rápidamente 
+            se transformó en una solución empresarial adoptada por instituciones educativas, empresas 
+            y organizaciones sin fines de lucro.
+        </p>
+        <p>
+            Hoy, más de <strong>500 organizaciones</strong> confían en nuestra plataforma para mantener 
+            informadas a sus comunidades, gestionando miles de publicaciones diarias con total 
+            seguridad y eficiencia.
+        </p>
+    </div>
+
+    <div class="about-section-content">
+        <h2>Nuestros Valores</h2>
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3 class="value-title">Innovación</h3>
+                    <p class="value-text">Mejora continua de nuestras soluciones tecnológicas</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3 class="value-title">Colaboración</h3>
+                    <p class="value-text">Trabajo en equipo para alcanzar objetivos comunes</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3 class="value-title">Excelencia</h3>
+                    <p class="value-text">Compromiso con la calidad en cada detalle</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-section">
+        <div class="row g-4">
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Organizaciones</div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Publicaciones</div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Usuarios Activos</div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-cta">
+        <h2 class="about-cta-title">
+        {% if request.session.nombre_usuario %}
+            Muchas gracias por visitarnos, {{ request.session.nombre_usuario }}
+        {% else %}
+            Muchas gracias por visitarnos, Invitado
+        {% endif %}
+        </h2>
+
+        <h2 class="about-cta-title">¿Listo para digitalizar tu comunicación?</h2>
+        <p class="about-cta-text">Únete a las organizaciones que ya confían en DigiMural</p>
+        <a href="{% url 'diariomural:lista_diariomural' %}" class="about-cta-button">
+            Ver Publicaciones
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+        </a>
+        <br>
+        <h2 class="about-cta-title">
+            Adiós, {{nombre_usuario}}
+        </h2>
+        
+    </div>
+</div>
 {% endblock %}

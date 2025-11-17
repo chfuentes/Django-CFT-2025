@@ -112,6 +112,29 @@ function mensajeError(texto) {
     });
 }
 
+/**
+ * Muestra un diálogo de confirmación
+ * @param {string} titulo - Título del mensaje
+ * @param {string} texto - Texto del mensaje
+ * @param {function} callback - Función a ejecutar si confirma
+ */
+function confirmacion(titulo, texto, callback) {
+    Swal.fire({
+        title: titulo,
+        text: texto,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#667eea',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            callback();
+        }
+    });
+}
+
 // ============================================
 // PROCESAR MENSAJES DE DJANGO
 // ============================================

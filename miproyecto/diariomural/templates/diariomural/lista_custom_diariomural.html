@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}
+    Diario Mural - Vista Personalizada
+{% endblock %}
+
+{% block content %}
+
+        <div class="text-center">
+            <h1 class="display-5 fw-bold">Listado de Publicaciones</h1>
+            <p class="lead mb-4">Listado de Publicaciones con Bootstrap Table</p>
+        </div>
+
+    <div class="mb-3">
+        <a href="{% url 'diariomural:crear_diariomural' %}" class="btn btn-success">+ Crear Publicación</a>
+    </div>
+
+    <div class="container-fluid">
+        <table
+            id="tabla-diariomural"
+            data-pagination="true"
+            data-search="true"
+            data-show-columns="true"
+            data-striped="true"
+            data-sort-name="id"
+            data-sort-order="desc"
+            data-locale="es-ES"
+            data-filter-control="true"
+            class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th data-field="id" data-sortable="true">ID</th>
+                    <th data-field="titulo" data-sortable="true">Título</th>
+                    <th data-field="contenido" data-sortable="false">Contenido</th>
+                    <th data-field="tipo" data-sortable="true" data-filter-control="select" data-filter-control-placeholder="Todos">Categoría</th>
+                    <th data-field="fecha_publicacion" data-sortable="true">Fecha</th>
+                    <th data-field="acciones" data-sortable="false">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for diariomural in diariosmurales %}
+                    <tr>
+                        <td>{{ diariomural.id }}</td>
+                        <td>{{ diariomural.titulo }}</td>
+                        <td>{{ diariomural.contenido|truncatewords:15 }}</td>
+                        <td>{{ diariomural.tipo.nombre_estado }}</td>
+                        <td>{{ diariomural.fecha_publicacion }}</td>
+                        <td>
+                            <a href="{% url 'diariomural:detalle_diariomural' slug=diariomural.slug %}" class="btn btn-info btn-sm">Ver</a>
+                            <a href="{% url 'diariomural:editar_diariomural' slug=diariomural.slug %}" class="btn btn-primary btn-sm">Editar</a>
+                            <form method="POST" action="{% url 'diariomural:eliminar_diariomural' slug=diariomural.slug %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta publicación?');">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if messages %}
+        {% for mensaje in messages %}
+            <script>mensaje("{{mensaje}}")</script>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

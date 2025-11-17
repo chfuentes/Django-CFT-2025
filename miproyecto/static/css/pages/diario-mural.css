@@ -109,6 +109,9 @@
     padding: 1.25rem 1.5rem;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
+    min-height: 70px; /* Altura fija */
+    display: flex;
+    align-items: center;
 }
 
 .diario-card-title {
@@ -116,12 +119,16 @@
     font-size: 1.25rem;
     font-weight: 600;
     color: white;
+    /* SOLO 1 LÍNEA */
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;  /* ← CAMBIAR DE 2 A 1 */
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 1.4;
+    white-space: normal; /* Importante para que funcione line-clamp */
 }
+
 
 /* Body */
 .diario-card-body {
@@ -241,4 +248,49 @@
     .card, form {
         padding: 1.5rem;
     }
+}
+
+/* Botones de acción en tarjetas */
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.card-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-edit {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-edit:hover {
+    background: var(--primary-dark);
+    transform: scale(1.15);
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #c82333;
+    transform: scale(1.15);
+}
+
+/* Footer con botones */
+.diario-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

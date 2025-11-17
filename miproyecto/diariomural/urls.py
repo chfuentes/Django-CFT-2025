@@ -10,6 +10,10 @@ app_name = "diariomural"
 
 urlpatterns = [
     path('', views.lista_diariomural, name='lista_diariomural'),
+    path('listado_custom', views.lista_custom_diariomural, name='lista_custom_diariomural'),
     path('crear', views.crear_diariomural, name="crear_diariomural"),
-    path('<slug:slug>/', views.detalle_diariomural, name='detalle_diariomural')
+    path('<slug:slug>/', views.detalle_diariomural, name='detalle_diariomural'),
+    path('<slug:slug>/editar/', views.editar_diariomural, name='editar_diariomural'),  
+    path('<slug:slug>/eliminar/', views.eliminar_diariomural, name='eliminar_diariomural')
+
 ]
